@@ -1,0 +1,68 @@
+{% extends 'common/web_layout.html' %}
+{% load staticfiles %}
+{% block css %}
+<link href="{% static 'css/faq.css' %}" rel="stylesheet">
+{{ block.super }}
+{% endblock %}
+{% block body %}
+<div class="home">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 faq-image" id="faq-image" alt="Null">
+            <div class="menu-section">
+                <nav class="navbar navbar-default">
+                    <!--Brand and toggle get grouped for better mobile display--> 
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">
+                            <div class="logo-section">
+                                <div class="logo"></div>
+                                <div class="caption-box">
+                                    <div class="caption">ShipNext<sup>&#153;</sup></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!--Collect the nav links, forms, and other content for toggling--> 
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="/">home <span class="sr-only">(current)</span></a></li>
+                            <li><a href="/?wwd" data-link="what_div">what we do</a></li>
+                            <li><a href="/?hwd" data-link="how_div">how we do <span class="sr-only">(current)</span></a></li>
+                            <li><a href="/?contact" data-link="contact_div">contact</a></li>
+                            <li><a href="/?login" data-link="login_div">login</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="">
+                <div class="logo-desc">
+                    <a href="/postad" class="btn btn-success post-add">post ad</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="faq_head">Jobs</div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <p>
+                    <dl class="dc">
+                                If you are a professional with an exceptional drive and are looking for a fast-paced environment, Shipnext is the right place for you. 
+                                Be part of a new and exciting adventure where people are valued.
+                                Send in your resumes to: <a href="mailto: career@shipnext.in">career@shipnext.in</a> 
+                    </dl>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'common/js/home.js' %}"></script>
+{% endblock %}

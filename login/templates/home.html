@@ -1,0 +1,504 @@
+{% extends 'common/web_layout.html' %}
+{% load staticfiles %}
+{% block css %}
+<link href="{% static 'css/web.css' %}" rel="stylesheet">
+{{ block.super }}
+{% endblock %}
+{% block body %}
+<div class="home home_div">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 section image-section">
+            <div class="menu-section">
+                <nav class="navbar navbar-default">
+                    <!--Brand and toggle get grouped for better mobile display--> 
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">
+                            <div class="logo-section">
+                                <div class="logo"></div>
+                                <div class="caption-box">
+                                    <div class="caption">ShipNext<sup>&#153;</sup></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!--Collect the nav links, forms, and other content for toggling--> 
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#home" data-link="home_div">home <span class="sr-only">(current)</span></a></li>
+                            <li><a href="#whatwedo" data-link="what_div" id="wwd">what we do</a></li>
+                            <li><a href="#howwedo" data-link="how_div" id="hwd">how we do <span class="sr-only">(current)</span></a></li>
+                            <li><a href="#contact" data-link="contact_div">contact</a></li>
+                            <li><a href="#login" data-link="login_div" class="login-website" id="login_id">login</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="">
+                <div class="logo-desc">
+                    <h1>get ship done</h1>
+                    <h3>find, book and ship</h2>
+                        <h4>with over 67,000 transporters around the globe</h3>
+                    <a href="/postad" class="btn btn-success post-add">post ad</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row green-background client-login login_div">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 white-background">
+            <a href="/signupTransporter/" style="text-decoration: none">
+                <div class="column-section list">
+                    <i class="fa fa-file-text-o"></i>
+                    <div class="content"><p>Transporters</p><h1>Join</h1></div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a href ="#" id="track-from-website">
+                <div class="column-section">
+                    <i class="fa fa-map-marker"></i>
+                    <div class="content"><p>track Your</p><h1>Shipment</h1></div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 " id="customer-login-home">
+            <a href ="#" class="login-website">
+                <div class="column-section cl-lg">
+                    <i class="fa fa-lock"></i>
+                    <div class="content"><p>client</p><h1>login</h1></div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 " id="list-shipment_Id" style="display: none">
+            <a href ="#" class="list-category">
+                <div class="column-section cl-lg">
+                    <i class="fa fa-th-list"></i>
+                    <div class="content"><p>List</p><h1>shipment</h1></div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="column-section">
+                <div class="content content-list">
+                    <h1 id="id_actions">List Your Shipment</h1>
+                    <hr>
+                    <div class="content-form home-page-form">
+                        <form class="form shipment-form" id="cat_subcat_form" action="{% url 'postad' %}" method="get">
+                            {% csrf_token %}
+                            <div class="form-group" >
+                                <select name="category" class="select form-control category_home"  required >
+                                    <option value="Living" selected="selected">Select Category</option>
+                                    <option value="Living" >Living</option>
+                                    <option value="Furniture">Furniture</option>
+                                    <option value="Electronics">Electronics</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="id_sub_categ_web" placeholder="sub category">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="submit">
+                            </div>
+                        </form>
+                        <form class="form shipment-form" id="sign-in-form" action="{% url 'login' %}" method="post" style="display: none" >{% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="username" id="id_username_web"  placeholder="username">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="id_password_web" name="password" placeholder="password">
+                            </div>
+                            <div id="error-msg" ></div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="login" id="web_login_id">
+                            </div>
+                            <div class="form-group">
+                                <a href="#" style="color: white" id="id_forget_pwd">Forget Password  </a>
+                            </div>
+                        </form>
+                        <form class="form shipment-form" id="track_login" action="{% url 'login' %}" method="post" style="display: none" >{% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="ref_id" id="id_refId_web"  placeholder="TrackID">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="username" id="id_username_web"  placeholder="username" required="">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="id_password_web" name="password" placeholder="password" required="">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="login">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+    <div class="row what_div">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 medium-box whatwedo">
+            <div class="column-section">
+                <h1>who we are</h1>
+                <hr class="gray_line">
+                <p>
+                    Our mission is to change the way shipments are made. Let's face it,
+                    shipments can often be chaotic. Not anymore. We are here to change that. 
+                    Whether you are moving your precious furniture or your expensive car, at Shipnext, 
+                    we aim to be a one-point destination to meet all your shipping and moving requirements. 
+                    We will help you get the best deal by giving you access to our directory of 
+                    thousands of transporters across the nation. 
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row how_div">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 medium-box howwedo">
+            <div class="column-section">
+                <h1>How we work</h1>
+                <hr class="gray_line">
+                <p>
+                    Shipnext is committed to make moving goods simple. 
+                    All you need to do is post your shipping requirements             
+                    We then bring to your disposal the bids of some of the best transporters from a list of more 
+                    than ten thousand transporters enlisted with us from all around the country. 
+                    Choose the best deal and you are good to go. That’s why we are here; to bring you the best deals.
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 medium-box order-placement">
+            <div class="column-section">
+                <h1>Order placements made easy</h1>
+                <hr class="gray_line">
+                <p>
+                    Once you have identified the perfect deal,  you can accept it with an easy click.
+                    Our transporter will then come to the location specified by you and pick up the shipment. 
+                    And it doesn't just stop at that. You can track your shipment in real time and monitor its 
+                    status by using our state of the art tracking technology which is installed in the vehicles of all our 
+                    transporters.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row green-background">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 testimonial-text ">
+            <div class="column-section"><div class="quote"><i class="fa fa-quote-left"></i></div>
+                <h1>testimonials    </h1>
+                <hr>
+                <p id="id_testimonial">" Timely deliveries- we understand that late deliveries could disrupt your busy schedule and so we ensure that
+                    your shipments reach their destination on time."</p>
+                <p>-<span id="username_id">John</span></p>
+                <p class="next-icon"></p>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 testimonial-img1 testi-img" >
+                    <a href="" data-link="testimonial-text">
+                        <div class="testimonial testimonial-quotes">
+                            <div class="banner-name" style="display: none">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-md-9 col-sm-9 col-xs-9 username_pic">John</div>
+                                    <div class="testimonial-content" style="display: none">
+                                        " Timely deliveries- we understand that late deliveries could disrupt your busy schedule and so we ensure that
+                                        your shipments reach their destination on time."
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1 vertical-bar"></div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1"><i class="fa fa-facebook-f"></i> </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1"><i class="fa fa-twitter"></i> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 testimonial-img2 testi-img" >
+                    <a href="" data-link="testimonial-text">
+                        <div class="testimonial testimonial-quotes">
+                            <div class="banner-name" style="display: none">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-md-9 col-sm-9 col-xs-9 username_pic">Julia</div>
+                                    <div class="testimonial-content" style="display: none">
+                                        " Safe and easy deliveries- we will ensure that your valuable goods will reach you safe and sound."
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1 vertical-bar"></div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1"><i class="fa fa-facebook-f"></i> </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1"><i class="fa fa-twitter"></i> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 testimonial-img3 testi-img" >
+            <a href="" data-link="testimonial-text">
+                <div class="testimonial testimonial-quotes">
+                    <div class="banner-name" style="display: none">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-9 col-sm-9 col-xs-9 username_pic">Catherine</div>
+                            <div class="testimonial-content" style="display: none">
+                                "  Get your freight/furniture/livestock delivered at the lowest possible 
+                                cost- we aspire to bring you the best deals."
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-xs-1 vertical-bar"></div>
+                            <div class="col-md-1 col-sm-1 col-xs-1"><i class="fa fa-facebook-f"></i> </div>
+                            <div class="col-md-1 col-sm-1 col-xs-1"><i class="fa fa-twitter"></i> </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 testimonial-img4 testi-img">
+            <a href="" data-link="testimonial-text">
+                <div class="testimonial testimonial-quotes">
+                    <div class="banner-name" style="display: none">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-9 col-sm-9 col-xs-9 username_pic">Johnson</div>
+                            <div class="testimonial-content" style="display: none">
+                                " Get text notifications when your shipment leaves the source and arrives at the destination."
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-xs-1 vertical-bar"></div>
+                            <div class="col-md-1 col-sm-1 col-xs-1"><i class="fa fa-facebook-f"></i> </div>
+                            <div class="col-md-1 col-sm-1 col-xs-1"><i class="fa fa-twitter"></i> </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 testimonial-img5 testi-img">
+            <a href="" data-link="testimonial-text">
+                <div class="testimonial testimonial-quotes">
+                    <div class="banner-name" style="display: none">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-9 col-sm-9 col-xs-9 username_pic">Jincy</div>
+                            <div class="testimonial-content" style="display: none">
+                                " We take delay very seriously and we do not like to disappoint our customers. 
+                                Hence we bring you the option of paying less if your shipment arrives late."
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-xs-1 vertical-bar"></div>
+                            <div class="col-md-1 col-sm-1 col-xs-1"><i class="fa fa-facebook-f"></i> </div>
+                            <div class="col-md-1 col-sm-1 col-xs-1"><i class="fa fa-twitter"></i> </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 testimonial-img6 testi-img">
+            <a href="" data-link="testimonial-text">
+                <div class="testimonial testimonial-quotes">
+                    <div class="banner-name" style="display: none">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-9 col-sm-9 col-xs-9 username_pic">Abi</div>
+                            <div class="testimonial-content" style="display: none">
+                                " At ShipNext we are committed to providing you with the best customer experience possible.
+                                we have taken out all the hectic stuff. lovely experiance"
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-xs-1 vertical-bar"></div>
+                            <div class="col-md-1 col-sm-1 col-xs-1"><i class="fa fa-facebook-f"></i> </div>
+                            <div class="col-md-1 col-sm-1 col-xs-1"><i class="fa fa-twitter"></i> </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="row video-blog-background">
+        <div class ="col-lg-6 col-md-6 vedio-blog-left col-sm-12 col-xs-12">
+            <div class="video-blog">
+                <div class="column-section"><div class="quote"><i class="fa fa-video-camera"></i></div>
+                    <h1>video blog</h1>
+                    <hr>
+                    <p>
+                        Finding the right transporter to ship your goods can be a headache. 
+                        Making sure it is the right price and that they deliver it on time- a lot of factors stress us out.
+                        You don’t have to fret anymore! With Shipnext handling your shipments,
+                        be assured that your parcels will be handled carefully. 
+                        Shipnext also ensures timely and low-cost shipping, thanks to our access to a large number or transporters and movers. 
+                        Be your courier consignments, shipping large items like vehicles or furniture and household items, we strive to make 
+                        the process easy for you. 
+                        
+                    </p>
+
+                    <div class="next-icon"><i class="fa fa-arrow-circle-left"></i>&nbsp;<i class="fa fa-arrow-circle-right"></i></div>
+                </div>
+            </div></div>
+        <div class="col-lg-6 col-md-6 vedio-blog-middle col-xs-12">
+            <div class="testimonial">
+                <div class="row outer">
+                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 middle-play">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12" id="play_video"><i class="fa fa-play"></i><div>play</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12"><i class="fa fa-heart-o"></i><div>like</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12"><i class="fa fa-clock-o"></i><div>later</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12"><i class="fa fa-share-alt"></i><div>share</div></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vedio-blog-right" >
+                        <div class="testimonial" id="video_image" > 
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row over-image">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="section">
+                <div class="over-content">
+                    <h2></h2>
+                    <h1></h1>
+                    <h3></h3>
+                </div></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 getintouch">
+                <div class="column-section green-background">
+                    <div class ="column-content">
+                        <h1>get in touch with us</h1>
+                        <p>
+                            Having trouble with your shipment? Talk to us directly for support.
+                            Call our toll free number and our customer service executive will
+                            resolve it in the shortest time possible.
+                        </p>
+                        <hr class="white_lines"/>
+                    </div>
+                </div><div class="column-section below-section">
+                    <div class ="column-content">
+                        <div class="div_address">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                    <div class="address-icon">
+                                        <i class="fa fa-map-marker"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-11 col-sm-11 col-xs-11 address-right">
+                                    <div class="address-head">ADDRESS</div>
+                                    <address>ShipNext Solutions ,FS 9, Heavenly Plaza,Vazhakkala,Thrikkakara P.O,</br>
+                                        Cochin - 682021,Kerala State, India
+                                    </address>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                    <div class="address-icon">
+                                        <i class="fa fa-mobile"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-11 col-sm-11 col-xs-11 address-right">
+                                    <div class="address-head">CALL</div>
+                                    <address> 0484-6505070 /0484-6505080</br>
+                                        Toll Free: 1800-270-0070
+                                    </address>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                    <div class="address-icon">
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-11 col-sm-11 col-xs-11 address-right">
+                                    <div class="address-head">MAIL</div>
+                                    <address>info@shipnext.in</address>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <hr class="white_lines">
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/ShipNextSolutions" target="blank"><i class="fa fa-facebook circle"></i></a>
+                            <a href="https://twitter.com/ShipNext" target="blank"><i class="fa fa-twitter circle"></i></a>
+                            <a href="https://plus.google.com/103590373248119671581/about" target="blank"><i class="fa fa-google-plus circle"></i></a>
+                            <a href="https://www.linkedin.com/company/shipnext" target="blank"><i class="fa fa-linkedin circle"></i></a>
+                            <a href="https://in.pinterest.com/shipnext/" target="blank"><i class="fa fa-pinterest circle"></i></a>
+                        </div>
+                    </div>
+                </div></div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 contact contact_div"><div class="column-section green-background">
+                    <div class ="contact-content">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-11">
+                            <h1>Drop a message</h1>
+                            <hr class="white_lines" />
+                            <p>Is there is a specific query about shipping you want to know more about, call our toll-free number
+                                or write to us and our team will get back to you as soon as possible. </p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="column-section">
+                    <form class="contact-form">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group" style="padding-right: 5px">
+                                    <input type="text" class="form-control" placeholder="Name" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group" style="padding-left: 5px">
+                                    <input type="text" class="form-control" placeholder="email addres"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="3" placeholder="Message..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary send">send</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default subscribe">subscribe to newsletter</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'common/js/home.js' %}"></script>
+{% endblock %}

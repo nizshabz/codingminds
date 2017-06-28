@@ -1,0 +1,18 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14 Jul, 2016, 1:42:42 PM
+    Author     : transight
+*/
+
+.menu-section {
+   position: fixed;
+    float: right;
+    width: 100%;
+    background-color: rgba(115, 182, 69, 0.22);
+    z-index: 11100;
+    height: 56px;
+}

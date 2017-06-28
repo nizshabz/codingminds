@@ -1,0 +1,117 @@
+{% extends 'common/web_layout.html' %}
+{% load staticfiles %}
+{% block css %}
+<link href="{% static 'css/faq.css' %}" rel="stylesheet">
+{{ block.super }}
+{% endblock %}
+{% block body %}
+<div class="home">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 faq-image" id="faq-image" alt="Null">
+            <div class="menu-section">
+                <nav class="navbar navbar-default">
+                    <!--Brand and toggle get grouped for better mobile display--> 
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">
+                            <div class="logo-section">
+                                <div class="logo"></div>
+                                <div class="caption-box">
+                                    <div class="caption">ShipNext<sup>&#153;</sup></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!--Collect the nav links, forms, and other content for toggling--> 
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="/">home <span class="sr-only">(current)</span></a></li>
+                            <li><a href="/?wwd" data-link="what_div">what we do</a></li>
+                            <li><a href="/?hwd" data-link="how_div">how we do <span class="sr-only">(current)</span></a></li>
+                            <li><a href="/?help" data-link="help_div">help <span class="sr-only">(current)</span></a></li>
+                            <li><a href="/?contact" data-link="contact_div">contact</a></li>
+                            <li><a href="/?login" data-link="login_div">login</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="">
+                <div class="logo-desc">
+                    <a href="/postad" class="btn btn-success post-add">post ad</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="faq_head">FAQ</div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <p>
+                    <dl class="dl">
+                        <dt class="dt">
+                            1. Can I select any transporter who bids on my shipment?
+                        </dt>
+                        <dd class="dd">
+                            Yes. You can choose the right deal from the list of bids. Each bidder will put up their price, time taken to ship etc.
+                            You can also choose the best transporter on the basis of the ratings they have received.  
+                        </dd>
+                        <dt class="dt">
+                            2. Can I cancel a post?
+                        </dt>
+                        <dd class="dd">
+                            Yes, you can cancel your post up to 6 hours prior to the pick up time. For any cancellations post that, 
+                            kindly contact our customer service executive who will assist you.
+                        </dd>
+                        <dt class="dt">
+                            3. What is your refund policy?
+                        </dt>
+                        <dd class="dd">
+                            If you cancel an Ad more than 6 hours prior to the pickup time, you can avail 100% refund. 
+                        </dd>
+                        <dt class="dt">
+                            4. What happens if there’s a problem with my shipment? Who do I contact?
+                        </dt>
+                        <dd class="dd">
+                            You can directly get in touch with us for all your queries by calling our toll 
+                            free number. Our team will do their best to address your queries.
+                            Our customer care executive will find out the source of the problem and get it 
+                            resolved in the shortest time possible.
+                        </dd>
+                        <dt class="dt">
+                            5. Will my pets be handled with care?
+                        </dt>
+                        <dd class="dd">
+                            We at Shipnext, care for your furry friends. Once we pick up your pet along with their cage we will make
+                            sure they stay hydrated and comfortable through the journey. We will make sure that we connect you
+                            only to those transporters who are comfortable in handling pets, so that there are no problems. However,
+                            we recommend not to transport your pet if they are younger than 10 weeks or have any health issues. Also,
+                            please consult with your vet for any precautions prior to travel. It will be a good idea to get your pet 
+                            micro-chipped and have an ID around their collar along with you name, address and phone number. 
+                        </dd>
+                        <dt class="dt">
+                            6. What is the best way to describe my shipment?
+                        </dt>
+                        <dd class="dd">
+                            It is best to describe your delivery in the most accurate possible. For example,
+                            while moving house hold god and furniture, the best thing to do would be to
+                            measure height, width and length as an estimated cumulative. It is better for
+                            the weight, however to be close to accurate, since prices vary according to weight. 
+
+                        </dd>
+                    </dl>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'common/js/home.js' %}"></script>
+{% endblock %}
