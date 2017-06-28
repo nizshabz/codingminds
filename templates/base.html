@@ -1,0 +1,82 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>{% block head_title %} {% endblock %}Static Top Navbar Example for Bootstrap</title>
+  <!-- <img src="{% static "my_app/example.jpg" %}" alt="My image"/> -->
+  {% include 'css.html' %}
+
+  <style>
+    {% block style %}
+    {% endblock %}
+  </style>
+
+  <!-- Using CDN css and js loaded -->
+  <!-- Latest compiled and minified CSS -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+
+  <!-- Optional theme -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
+
+  <!-- Latest compiled and minified JavaScript -->
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+  <!--  -->
+
+</head>
+
+<body>
+
+  <!-- Static navbar -->
+  {% include 'navbar.html' %}
+  <!-- no need of loading include tag just like static since include is a builtin tag and that is added to the template by render -->
+  <!--  -->
+<!-- 	{% verbatim %}
+verbatim is used to show something on the template
+{% endverbatim %} -->
+<!-- Container -->
+<div class="container">
+  {% block jumbotron %}
+  {% endblock %}
+  {% block signupform %}
+  {% endblock %}  
+  {% block about %}  
+  {% endblock %}
+  {% block forms %}    
+  {% endblock %}
+  {% block content %}
+  {% endblock %}
+  {% if query %}
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>SignUp</th>
+      </tr>
+    </thead> 
+    {% for instance in query %}      
+    <tbody>
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{instance.full_name}}</td>
+        <td>{{instance.email}}</td>
+        <td>{{instance.timestamp|timesince}}</td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+  {% endif %} 
+</div> 
+<!-- /container -->
+{% include 'js.html' %}
+</body>
+</html>

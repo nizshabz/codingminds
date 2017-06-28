@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+<div class="col-xs-6 col-xs-offset-4">
+		<p class='text-align-center lead'>You have successfully logged out.</p>
+		<p class='text-align-center lead'>
+			<a href="{% url 'auth_login' %}">Login</a>
+		</p>
+	</p>
+</div>
+</div>
+{% endblock %}

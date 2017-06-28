@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %} 
+<!-- inorder to load crispy forms to this template -->
+<!-- template inheritence -->
+
+{% block head_title %} Mvp Landing |
+
+{% endblock %}
+<style>
+  {% block style %}
+  .text_allign_center {
+    text-align: center;
+  }
+  {% endblock %}
+</style>
+{% block jumbotron %}      
+<!-- Main component for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="row">
+      <div class="col-xs-6">                    
+        <h1>Mvp landing</h1>
+        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work.</p>
+        <p>To see the difference between static and fixed top navbars, just scroll.</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="{% url 'contact'%}" role="button">Join Us &raquo;</a>
+        </p>
+      </div>
+            <iframe width="520" height="300" src="https://www.youtube.com/embed/T8MS5C0C8i8" frameborder="0" allowfullscreen> </iframe>
+      <!-- <div class="col-xs-6" style="background-color: black; height: 300px;">  -->
+      <!-- </div> -->
+    </div>
+  </div>
+{{ block.super}}
+<p class="text_allign_center">Welcome...</p>
+{% endblock %}
+{% block signupform %}
+<div class="row">
+  <div class="col-xs-3 pull-right">  
+    <h1>{{title1}}</h1>
+    <h1>{{title2}}</h1>
+    <form method="POST" action="">{% csrf_token %}
+     <!-- {{form.as_p}} -->
+     <!-- also remove .as_p and add |crispy instead -->
+     {{form|crispy}}
+     <input class="btn btn-primary" type="submit" name="Sign Up">
+   </form>   
+ </div>
+</div>
+{% endblock %}
